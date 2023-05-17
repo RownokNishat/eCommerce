@@ -1,7 +1,11 @@
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import React, { useState } from "react";
 import Success from "../../Component/Request/Success";
 import Error from "../../Component/Request/Error";
+import { Link } from "react-router-dom";
+import loginImage from "../../Assests/Images/login.webp";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -21,20 +25,30 @@ const Login = () => {
   };
   const handleLogin = (e) => {
     e.preventDefault();
-    setState({ ...state, isLoading: true });
+    // setState({ ...state, isLoading: true });
     axios
       .post("https://fakestoreapi.com/auth/login", state.formData)
       .then(function (response) {
         console.log(response);
         setState({ ...state, isLoading: false });
         if (response.status == 200) {
-          <Success message="Login Successfully"></Success>;
+          //   return <Success message="Login Successfully"></Success>;
         }
+        toast("Login Successfull", "Login");
       })
       .catch(function (error) {
         if (error.response.status == 401) {
-          <Error message={error.response.data}></Error>;
         }
+        toast("🦄 Wow so easy!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         console.log(error);
         setState({ ...state, isLoading: false });
       });
@@ -62,20 +76,19 @@ const Login = () => {
         </div>
       ) : (
         <div className="hero min-h-screen bg-base-200">
-          <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="hero-content flex-col lg:flex-row ">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Login now!</h1>
-              <p className="py-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
+              <img className="rounded" src={loginImage} alt="" />
             </div>
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
               <form className="card-body">
+                <br />
+
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">User Name</span>
+                    <span className="label-text text-xl font-bold">
+                      User Name
+                    </span>
                   </label>
                   <input
                     name="username"
@@ -85,9 +98,12 @@ const Login = () => {
                     className="input input-bordered"
                   />
                 </div>
+                <br />
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Password</span>
+                    <span className="label-text text-xl font-bold">
+                      Password
+                    </span>
                   </label>
                   <input
                     name="password"
@@ -98,10 +114,19 @@ const Login = () => {
                   />
                 </div>
                 <div className="form-control mt-6">
-                  <button onClick={handleLogin} className="btn btn-primary">
+                  <button
+                    onClick={handleLogin}
+                    className="btn bg-gradient-to-r from-violet-500 to-fuchsia-500"
+                  >
                     Login
                   </button>
                 </div>
+                <div className="flex justify-center">
+                  <button>
+                    Need An Account?<Link to="/registrationPage"> SignUp</Link>
+                  </button>
+                </div>
+                <br />
               </form>
             </div>
           </div>
