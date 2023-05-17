@@ -1,11 +1,12 @@
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Success from "../../Component/Request/Success";
 import Error from "../../Component/Request/Error";
 import { Link } from "react-router-dom";
 import loginImage from "../../Assests/Images/login.webp";
+import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -15,6 +16,7 @@ const Login = () => {
       password: "",
     },
   });
+  const { setUser } = useContext(AuthContext);
 
   const handleLoginInput = (e) => {
     e.preventDefault();
@@ -25,37 +27,28 @@ const Login = () => {
   };
   const handleLogin = (e) => {
     e.preventDefault();
-    // setState({ ...state, isLoading: true });
+    console.log(state.formData);
+    setState({ ...state, isLoading: true });
     axios
       .post("https://fakestoreapi.com/auth/login", state.formData)
       .then(function (response) {
         console.log(response);
         setState({ ...state, isLoading: false });
-        if (response.status == 200) {
+        if (response?.status == 200) {
           //   return <Success message="Login Successfully"></Success>;
         }
-        toast("Login Successfull", "Login");
       })
       .catch(function (error) {
-        if (error.response.status == 401) {
+        if (error?.response?.status == 401) {
         }
-        toast("🦄 Wow so easy!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+
         console.log(error);
-        setState({ ...state, isLoading: false });
       });
+    setState({ ...state, isLoading: false });
   };
   return (
     <div>
-      {state.isLoading ? (
+      {state?.isLoading ? (
         <div className="flex justify-center items-center h-screen">
           <svg
             aria-hidden="true"
