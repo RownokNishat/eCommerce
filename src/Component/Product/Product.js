@@ -1,46 +1,36 @@
 import React, { useState } from "react";
 import Modal from "../Modal/Modal";
+import "./Product.css";
 
-const Product = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [data, setData] = useState(null);
-  const { id, title, price, description, category, image, rating } = props.data;
-
-  const handleModal = (d) => {
-    setIsOpen(true);
-    setData(d);
-  };
+const Product = ({ data, handleModal }) => {
+  const { id, title, price, description, category, image, rating } = data;
   return (
-    <div>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
-        <figure>
-          <img className="h-48 w-48" src={image} alt={title} />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">{title}</h2>
-          <h4>{price}TK</h4>
-          <h5>{category}</h5>
-          <p>
-            {description.length > 100
-              ? description.slice(0, 100) + "..."
-              : description}
-          </p>
-          <div className="card-actions justify-end">
-            <button
-              onClick={() => {
-                handleModal(props.data);
-              }}
-              className="btn"
-            >
-              Show Details
-            </button>
-            {isOpen && <Modal setIsOpen={setIsOpen} data={data}></Modal>}
-
-            <button className="btn bg-gradient-to-r from-violet-500 to-fuchsia-500">
-              Buy Now
-            </button>
-          </div>
-        </div>
+    <div className="single-card bg-base-100 shadow-2xl">
+      <div className="single-card-image">
+        <img src={image} alt={title} />
+      </div>
+      <div className="single-card-body">
+        <p className="single-card-title">{title}</p>
+        <p className="single-card-text">{price}TK</p>
+        <p className="single-card-text">{category}</p>
+        {/* <p>
+          {description.length > 50
+            ? description.slice(0, 50) + "..."
+            : description}
+        </p> */}
+      </div>
+      <div className="single-card-footer">
+        <button
+          onClick={() => {
+            handleModal(data);
+          }}
+          className="btn single-card-button me-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 "
+        >
+          Show Details
+        </button>
+        <button className="btn single-card-button me-6 bg-gradient-to-r from-cyan-500 to-blue-500">
+          Buy Now
+        </button>
       </div>
     </div>
   );
