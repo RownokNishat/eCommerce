@@ -5,17 +5,6 @@ import styles from "./Modal.module.css";
 const Modal = ({ setIsOpen, data }) => {
   console.log(data);
   const { id, title, price, description, category, image, rating } = data;
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`https://fakestoreapi.com/products/${data}`)
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, [data]);
   return (
     <>
       <div className={styles.darkBG} onClick={() => setIsOpen(false)} />
@@ -26,12 +15,12 @@ const Modal = ({ setIsOpen, data }) => {
           </button>
           <div className={styles.modalContent}>
             <div className="card card-side bg-base-100 shadow-xl">
-              <figure>
+              <div className={styles.modalImage}>
                 <img src={image} alt={title} />
-              </figure>
-              <div className="card-body">
+              </div>
+              <div className="card-body text-start">
                 <h2 className="card-title">{title}</h2>
-                <h3>{price}</h3>
+                <h3 className="font-bold text-red-800">{price} TK</h3>
                 <p>{description}</p>
               </div>
             </div>

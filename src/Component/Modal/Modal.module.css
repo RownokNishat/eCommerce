@@ -19,9 +19,13 @@
 }
 
 .modal {
-  width: 450px;
-  height: 450px;
-  background: rgb(166, 233, 239);
+  width: 60vw;
+  height: 65vh;
+  background-image: linear-gradient(
+    to right,
+    rgb(86, 107, 239),
+    rgb(102, 209, 225)
+  );
   color: white;
   border-radius: 16px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
@@ -51,7 +55,15 @@
   color: #2c3e50;
   text-align: center;
 }
-
+.modalImage {
+  width: 50vw;
+  height: 40vh;
+}
+.modalImage img {
+  width: 100%;
+  height: 100%;
+  padding: 7%;
+}
 .modalActions {
   position: absolute;
   bottom: 2px;

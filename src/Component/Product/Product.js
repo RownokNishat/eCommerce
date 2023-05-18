@@ -11,7 +11,9 @@ const Product = ({ data, handleModal }) => {
       </div>
       <div className="single-card-body">
         <p className="single-card-title">{title}</p>
-        <p className="single-card-text">{price}TK</p>
+        <p className="single-card-text font-bold text-red-700">
+          {price} <span className="text-xm font-extrabold"> TK</span>
+        </p>
         <p className="single-card-text">{category}</p>
         {/* <p>
           {description.length > 50

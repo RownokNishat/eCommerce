@@ -116,7 +116,10 @@ const Login = () => {
                 </div>
                 <div className="flex justify-center">
                   <button>
-                    Need An Account?<Link to="/registrationPage"> SignUp</Link>
+                    Need An Account?
+                    <Link to="/registrationPage">
+                      <span className="text-blue-900 font-bold">SignUp</span>{" "}
+                    </Link>
                   </button>
                 </div>
                 <br />

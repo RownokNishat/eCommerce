@@ -217,7 +217,10 @@ const Registration = () => {
               </div>
               <div className="flex justify-center">
                 <button>
-                  Already Have An Account?<Link to="/loginPage"> Login</Link>
+                  Already Have An Account?
+                  <Link to="/loginPage">
+                    <span className="text-blue-900 font-bold">Login</span>
+                  </Link>
                 </button>
               </div>
             </div>
