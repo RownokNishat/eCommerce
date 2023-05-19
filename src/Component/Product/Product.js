@@ -38,7 +38,7 @@ const Product = ({ data, handleModal }) => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
     var count = 0;
     localCart?.map((singleObj) => {
-      if (singleObj.foodName === data.foodName) {
+      if (singleObj.id === data.id) {
         count = count + 1;
         setDisable(true);
       }

@@ -5,11 +5,17 @@ const Cart = () => {
   const [nodata, setNodata] = useState(true);
   const [data, setdata] = useState([]);
   const [toggle, setToggle] = useState(true);
+  const [totalPayablePrice, settotalPayablePrice] = useState(null);
 
   useEffect(() => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
 
     if (localCart !== null) {
+      let totalPayAblePrice = 0;
+      localCart?.map((singleCart) => {
+        totalPayAblePrice += singleCart?.payableprice;
+      });
+      settotalPayablePrice(totalPayAblePrice);
       setdata(localCart);
       setNodata(false);
     }
@@ -60,7 +66,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto">
+    <div className="max-w-screen-lg mx-auto mt-5">
       <h2
         style={{
           textAlign: "center",
@@ -100,10 +106,11 @@ const Cart = () => {
               <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Status</th>
+                <th>Status</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Status</th>
-                <th>Status</th>
+                <th>Payable Price</th>
               </tr>
             </thead>
             <tbody>
@@ -111,9 +118,10 @@ const Cart = () => {
                 return (
                   <tr key={i}>
                     <td>{i + 1}</td>
-                    <td>{d.title}</td>
-                    <td>{d.payableprice}</td>
-                    <td>{d.quantity}</td>
+                    <td>
+                      {d.title.length > 30 ? d.title.slice(0, 30) : d.title}
+                    </td>
+
                     <td>
                       <button
                         className="addToCartButtonDecrease"
@@ -131,19 +139,34 @@ const Cart = () => {
                         Add +
                       </button>
                     </td>
+                    <td>{d.price}</td>
+                    <td>{d.quantity}</td>
+                    <td>{d.payableprice}</td>
                   </tr>
                 );
               })}
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total Payable Price</td>
+                <td>{totalPayablePrice?.toFixed(2)}</td>
+              </tr>
             </tbody>
           </table>
+          <hr></hr>
         </div>
-        <div className="checkoutDiv">
+        <div className="checkoutDiv mt-3 flex justify-center">
           <Link to="/checkout">
             {" "}
             <button
               disabled={data?.length === 0 ? true : false}
               className={
-                data?.length === 0 ? "disabledButton" : "checkoutButton"
+                data?.length === 0
+                  ? "btn single-card-button me-6 bg-gray-500"
+                  : "addToCartButton btn single-card-button me-6 bg-gradient-to-r from-cyan-500 to-blue-500"
               }
             >
               Checkout
