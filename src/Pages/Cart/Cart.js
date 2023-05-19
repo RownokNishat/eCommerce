@@ -158,7 +158,7 @@ const Cart = () => {
           </table>
           <hr></hr>
         </div>
-        <div className="checkoutDiv mt-3 flex justify-center">
+        <div className="checkoutDiv mt-3 flex justify-centergi">
           <Link to="/checkout">
             {" "}
             <button
@@ -174,7 +174,6 @@ const Cart = () => {
           </Link>
         </div>
       </div>
-      <PurchaseHistory></PurchaseHistory>
     </div>
   );
 };
