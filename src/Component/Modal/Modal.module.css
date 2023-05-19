@@ -73,8 +73,9 @@
 
 .actionsContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
+  padding: 4px;
 }
 
 .closeBtn {
@@ -84,8 +85,8 @@
   border-radius: 8px;
   border: none;
   font-size: 18px;
-  color: #2c3e50;
-  background: white;
+  color: #f1f3f6;
+  background: rgb(230, 62, 62);
   transition: all 0.25s ease;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06);
   position: absolute;
@@ -110,7 +111,7 @@
   font-size: 0.8rem;
   border: none;
   color: #fff;
-  background: #ff3e4e;
+  background-color: #b650f3;
   transition: all 0.25s ease;
 }
 
@@ -130,6 +131,8 @@
   border: none;
   color: #2c3e50;
   background: #fcfcfc;
+  margin-right: 3vw;
+  margin-left: 1vw;
   transition: all 0.25s ease;
 }
 
