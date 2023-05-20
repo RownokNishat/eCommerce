@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import navlogo from "../../Assests/Images/navlogo.png";
 import userprofile from "../../Assests/Images/userprofile.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Authprovider/Authprovider";
 
 const Navbar = () => {
   return (
@@ -10,6 +11,7 @@ const Navbar = () => {
         <div className="flex-1 h-14 w-14">
           <img className="h-48 w-48" src={navlogo} alt="" />
         </div>
+
         <div className="flex-none">
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -59,10 +61,10 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
+                <Link to="/userProfile" className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a>Settings</a>

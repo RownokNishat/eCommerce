@@ -2,9 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styles from "./Modal.module.css";
 
-const Modal = ({ setIsOpen, data }) => {
-  console.log(data);
-  const { id, title, price, description, category, image, rating } = data;
+const Modal = ({ setIsOpen, children }) => {
   return (
     <>
       <div className={styles.darkBG} onClick={() => setIsOpen(false)} />
@@ -13,28 +11,9 @@ const Modal = ({ setIsOpen, data }) => {
           <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>
             X
           </button>
-          <div className={styles.modalContent}>
-            <div className="card card-side bg-base-100 shadow-xl">
-              <div className={styles.modalImage}>
-                <img src={image} alt={title} />
-              </div>
-              <div className="card-body text-start">
-                <h2 className="card-title">{title}</h2>
-                <h3 className="font-bold text-red-800">{price} TK</h3>
-                <p>{description}</p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.modalActions}>
+          <div className={styles.modalContent}>{children}</div>
+          {/* <div className={styles.modalActions}>
             <div className={styles.actionsContainer}>
-              <button
-                className={styles.deleteBtn}
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-              >
-                Add to cart
-              </button>
               <button
                 className={styles.cancelBtn}
                 onClick={() => setIsOpen(false)}
@@ -42,7 +21,7 @@ const Modal = ({ setIsOpen, data }) => {
                 Cancel
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

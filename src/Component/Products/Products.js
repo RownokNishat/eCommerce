@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import Modal from "../Modal/Modal";
+import ShowDetails from "../ShowDetails/ShowDetails";
 
 const Products = () => {
   const [datas, setDatas] = useState([]);
@@ -28,7 +29,12 @@ const Products = () => {
 
   return (
     <div className="mt-14">
-      {isOpen && <Modal setIsOpen={setIsOpen} data={data}></Modal>}
+      {isOpen && (
+        <Modal setIsOpen={setIsOpen}>
+          {" "}
+          <ShowDetails data={data}></ShowDetails>
+        </Modal>
+      )}
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 w-4/5 mx-auto">
         {datas?.map((data) => {
           return (
