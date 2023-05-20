@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import signupImage from "../../Assests/Images/signup.png";
+import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
 
 const UpdateProfile = ({ userData }) => {
+  const { toggle, settoggle } = useContext(AuthContext);
   const [state, setState] = useState({
     isLoading: false,
     formData: {
@@ -62,6 +64,8 @@ const UpdateProfile = ({ userData }) => {
       .put("https://fakestoreapi.com/users/7", state.formData)
       .then(function (response) {
         console.log(response);
+        localStorage.setItem("userdata", JSON.stringify(response.data));
+        settoggle(!toggle);
       })
       .catch(function (error) {
         console.log(error);
