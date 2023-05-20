@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import React, { useContext, useState } from "react";
 import Success from "../../Component/Request/Success";
 import Error from "../../Component/Request/Error";
-import { Link, json } from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 import loginImage from "../../Assests/Images/login.webp";
 import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
 
@@ -17,8 +17,8 @@ const Login = () => {
       password: "",
     },
   });
-  const { setUser } = useContext(AuthContext);
-
+  const { setUser, toggle, settoggle } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLoginInput = (e) => {
     e.preventDefault();
     const formData = state.formData;
@@ -48,6 +48,8 @@ const Login = () => {
         }
         setUser(jwtData);
         setState({ ...state, isLoading: false });
+        settoggle(toggle);
+        navigate("/");
         if (response?.status == 200) {
           //   return <Success message="Login Successfully"></Success>;
         }

@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PurchaseHistory from "../PurchaseHistory/PurchaseHistory";
+import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
 const Cart = () => {
   const [nodata, setNodata] = useState(true);
   const [data, setdata] = useState([]);
   const [toggle, setToggle] = useState(true);
-  const [totalPayablePrice, settotalPayablePrice] = useState(null);
+  const [totalPayablePrice, settotalPayablePrice] = useState(0);
+
+  const user = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(() => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
@@ -159,19 +162,35 @@ const Cart = () => {
           <hr></hr>
         </div>
         <div className="checkoutDiv mt-3 flex justify-centergi">
-          <Link to="/checkout">
-            {" "}
-            <button
-              disabled={data?.length === 0 ? true : false}
-              className={
-                data?.length === 0
-                  ? "btn single-card-button me-6 bg-gray-500"
-                  : "addToCartButton btn single-card-button me-6 bg-gradient-to-r from-cyan-500 to-blue-500"
-              }
-            >
-              Checkout
-            </button>
-          </Link>
+          {user ? (
+            <Link to="/purchaseHistory">
+              {" "}
+              <button
+                disabled={data?.length === 0 ? true : false}
+                className={
+                  data?.length === 0
+                    ? "btn single-card-button me-6 bg-gray-500"
+                    : "addToCartButton btn single-card-button me-6 bg-gradient-to-r from-cyan-500 to-blue-500"
+                }
+              >
+                Checkout
+              </button>
+            </Link>
+          ) : (
+            <Link to="/loginPage">
+              {" "}
+              <button
+                disabled={data?.length === 0 ? true : false}
+                className={
+                  data?.length === 0
+                    ? "btn single-card-button me-6 bg-gray-500"
+                    : "addToCartButton btn single-card-button me-6 bg-gradient-to-r from-cyan-500 to-blue-500"
+                }
+              >
+                Checkout
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
