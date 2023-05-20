@@ -33,7 +33,7 @@ const Modal = ({ setIsOpen, data }) => {
                   setIsOpen(false);
                 }}
               >
-                Submit
+                Add to cart
               </button>
               <button
                 className={styles.cancelBtn}

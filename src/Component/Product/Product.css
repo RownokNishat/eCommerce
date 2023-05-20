@@ -19,14 +19,13 @@
 .single-card-body {
   height: 180px;
   width: 350px;
-
   padding: 2rem;
 }
 
 .single-card-title {
   min-height: 100px;
   max-height: 100px;
-  t-size: 16px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -43,4 +42,13 @@
 
 .single-card-button {
   border: 0px;
+}
+.disabledButton {
+  border: 0px solid;
+  background-color: gray;
+  border-radius: 10px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
 }
