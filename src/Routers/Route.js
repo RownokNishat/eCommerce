@@ -4,6 +4,7 @@ import Landing from "../Pages/LandingPage/Landing";
 import Login from "../Pages/LoginPage/Login";
 import Registration from "../Pages/RegistrationPage/Registration";
 import PurchaseHistory from "../Pages/PurchaseHistory/PurchaseHistory";
+import Profile from "../Pages/UserProfile/Profile";
 const { createBrowserRouter } = require("react-router-dom");
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/purchaseHistory",
         element: <PurchaseHistory></PurchaseHistory>,
+      },
+      {
+        path: "/userProfile",
+        element: <Profile></Profile>,
       },
     ],
   },

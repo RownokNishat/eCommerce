@@ -20,7 +20,7 @@
 
 .modal {
   width: 60vw;
-  height: 65vh;
+  height: 75vh;
   background-image: linear-gradient(
     to right,
     rgb(86, 107, 239),
@@ -30,6 +30,7 @@
   border-radius: 16px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
   z-index: 1;
+  overflow-y: scroll;
 }
 
 .modalHeader {

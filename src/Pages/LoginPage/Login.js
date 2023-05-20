@@ -1,10 +1,11 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React, { useContext, useState } from "react";
 import Success from "../../Component/Request/Success";
 import Error from "../../Component/Request/Error";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import loginImage from "../../Assests/Images/login.webp";
 import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
 
@@ -32,7 +33,20 @@ const Login = () => {
     axios
       .post("https://fakestoreapi.com/auth/login", state.formData)
       .then(function (response) {
-        console.log(response);
+        const jwtData = jwt_decode(response.data.token);
+        console.log("jwtdata", jwtData);
+        if (jwtData.sub === 1) {
+          localStorage.setItem(
+            "userid",
+            JSON.stringify({ id: jwtData.sub, role: "admin" })
+          );
+        } else {
+          localStorage.setItem(
+            "userid",
+            JSON.stringify({ id: jwtData.sub, role: "user" })
+          );
+        }
+        setUser(jwtData);
         setState({ ...state, isLoading: false });
         if (response?.status == 200) {
           //   return <Success message="Login Successfully"></Success>;

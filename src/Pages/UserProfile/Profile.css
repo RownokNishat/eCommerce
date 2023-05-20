@@ -1,0 +1,9 @@
+.profilePicture {
+  display: flex;
+  justify-content: center;
+}
+.profilePicture img {
+  width: 180px;
+  height: 180px;
+  border-radius: 100px;
+}
