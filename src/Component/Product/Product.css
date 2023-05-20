@@ -1,0 +1,46 @@
+.single-card {
+  width: 350px;
+  min-height: 400px;
+  box-shadow: 10px 10px solid black;
+  border-radius: 10px;
+}
+.single-card-image {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  width: 350px;
+  height: 150px;
+}
+.single-card-image img {
+  width: 150px;
+  height: 150px;
+}
+
+.single-card-body {
+  height: 180px;
+  width: 350px;
+
+  padding: 2rem;
+}
+
+.single-card-title {
+  min-height: 100px;
+  max-height: 100px;
+  t-size: 16px;
+  font-weight: 700;
+}
+
+.single-card-text {
+  font-size: 15px;
+  font-weight: 600;
+}
+.single-card-footer {
+  width: 350px;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.single-card-button {
+  border: 0px;
+}
