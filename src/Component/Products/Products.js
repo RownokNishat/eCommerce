@@ -3,18 +3,22 @@ import React, { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import Modal from "../Modal/Modal";
 import ShowDetails from "../ShowDetails/ShowDetails";
+import { sort } from "semver";
 
 const Products = () => {
   const [datas, setDatas] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState(null);
-
+  const [sortBy, setSortBy] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [highSortDatas, setHighSortDatas] = useState(null);
+  const [lowSortDatas, setLowSortDatas] = useState(null);
+  const [searchText, setSeacrhText] = useState("");
+  const [searchingData, setSearchingData] = useState("");
   const handleModal = (d) => {
     setIsOpen(true);
     setData(d);
   };
-
-  console.log(data);
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
@@ -25,7 +29,49 @@ const Products = () => {
         console.log(error);
       });
   }, []);
-  console.log(datas);
+
+  useEffect(() => {
+    if (sortBy == 0) {
+      setDatas(highSortDatas);
+    } else if (sortBy == 1) {
+      setDatas(lowSortDatas);
+    } else {
+      setDatas(searchingData);
+    }
+  }, [
+    setHighSortDatas,
+    highSortDatas,
+    lowSortDatas,
+    setLowSortDatas,
+    searchingData,
+    setSearchingData,
+  ]);
+
+  useEffect(() => {
+    if (sortBy === "0") {
+      setHighSortDatas(datas.sort((a, b) => b.price - a.price));
+      setLowSortDatas([]);
+    }
+    if (sortBy === "1") {
+      setLowSortDatas(datas.sort((a, b) => a.price - b.price));
+      setHighSortDatas([]);
+    }
+  }, [sortBy]);
+
+  const handleSearch = () => {
+    let arr = [];
+    datas?.map((d) => {
+      if (
+        d?.title.includes(searchText) ||
+        d?.description.includes(searchText)
+      ) {
+        arr.push(d);
+      }
+    });
+    setSearchingData(arr);
+    setHighSortDatas([]);
+    setLowSortDatas([]);
+  };
 
   return (
     <div className="mt-14">
@@ -35,16 +81,53 @@ const Products = () => {
           <ShowDetails data={data}></ShowDetails>
         </Modal>
       )}
+      <div className="w-4/5 mx-auto flex gap-8 text-xl font-bold mb-4">
+        <div className="p-3 flex">
+          <input
+            type="text"
+            name="price"
+            onChange={(e) => setSeacrhText(e.target.value)}
+          />
+          <button onClick={handleSearch} className="ps-2">
+            search
+          </button>
+        </div>
+        <div className="border-spacing-16 rounded border-solid border-2  border-black ">
+          <div className="p-3 flex">
+            <input
+              type="radio"
+              name="price"
+              value="0"
+              onChange={(e) => setSortBy(e.target.value)}
+            />
+            <p className="ps-2">High to low</p>
+          </div>
+        </div>
+        <div className="border-spacing-16 rounded border-solid border-2  border-black ">
+          <div className="p-3 flex">
+            <input
+              type="radio"
+              name="price"
+              value="1"
+              onChange={(e) => setSortBy(e.target.value)}
+            />
+            <p className="ps-2">Low to high</p>
+          </div>
+        </div>
+      </div>
+
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 w-4/5 mx-auto">
-        {datas?.map((data) => {
-          return (
-            <Product
-              key={data?.id}
-              data={data}
-              handleModal={handleModal}
-            ></Product>
-          );
-        })}
+        {datas
+          ? datas?.map((data) => {
+              return (
+                <Product
+                  key={data?.id}
+                  data={data}
+                  handleModal={handleModal}
+                ></Product>
+              );
+            })
+          : null}
       </div>
     </div>
   );

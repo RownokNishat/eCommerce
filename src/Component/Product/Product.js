@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "../Modal/Modal";
 import "./Product.css";
+import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
 
 const Product = ({ data, handleModal }) => {
   const { id, title, price, description, category, image, rating } = data;
   const [cart, setCart] = useState([]);
   const [disable, setDisable] = useState(false);
+  const { toggle, settoggle } = useContext(AuthContext);
 
   const setAddToCart = (data) => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
@@ -65,12 +67,6 @@ const Product = ({ data, handleModal }) => {
         >
           Show Details
         </button>
-        {/* <button
-          onClick={() => setAddToCart(data)}
-          className="btn single-card-button me-6 bg-gradient-to-r from-cyan-500 to-blue-500"
-        >
-          ADD TO CART
-        </button> */}
 
         <button
           className={
@@ -81,6 +77,7 @@ const Product = ({ data, handleModal }) => {
           disabled={disable}
           onClick={() => {
             setAddToCart(data);
+            settoggle(!toggle);
           }}
         >
           {disable ? "Already Added" : "Add To Cart"}

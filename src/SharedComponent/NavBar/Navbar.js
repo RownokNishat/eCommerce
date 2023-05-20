@@ -1,10 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import navlogo from "../../Assests/Images/navlogo.png";
 import userprofile from "../../Assests/Images/userprofile.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Authprovider/Authprovider";
 
 const Navbar = () => {
+  const [cartdata, setCartdata] = useState([]);
+  const [LocalStorageuser, setLocalStroageuser] = useState([]);
+  const [totalPayablePrice, settotalPayablePrice] = useState(0);
+  const { user, toggle, settoggle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartdata(cart);
+    const userid = JSON.parse(localStorage.getItem("userid"));
+    setLocalStroageuser(userid);
+
+    let totalPayAblePrice = 0;
+    cart?.map((singleCart) => {
+      totalPayAblePrice += singleCart?.payableprice;
+    });
+    settotalPayablePrice(totalPayAblePrice);
+  }, [toggle, user]);
   return (
     <div>
       <div className="navbar bg-gradient-to-r from-violet-500 to-fuchsia-500 ps-24 pe-24">
@@ -13,6 +30,24 @@ const Navbar = () => {
         </div>
 
         <div className="flex-none">
+          <Link to="/">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              // className="w-14 h-14 font-bold pe-6"
+              className="h-8 w-8 text-5xl "
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+              />
+            </svg>
+          </Link>
+
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <div className="indicator ">
@@ -31,7 +66,7 @@ const Navbar = () => {
                   />
                 </svg>
                 <span className="badge badge-sm indicator-item text-white">
-                  8
+                  {cartdata?.length}
                 </span>
               </div>
             </label>
@@ -40,8 +75,12 @@ const Navbar = () => {
               className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
             >
               <div className="card-body">
-                <span className="font-bold text-lg">8 Items</span>
-                <span className="text-info">Subtotal: $999</span>
+                <span className="font-bold text-lg">
+                  {cartdata?.length} items
+                </span>
+                <span className="text-info">
+                  Subtotal: {totalPayablePrice}TK
+                </span>
                 <div className="card-actions">
                   <Link to="/cart" className="btn btn-primary btn-block">
                     View cart
@@ -60,18 +99,38 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link to="/userProfile" className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </Link>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
+              {LocalStorageuser ? (
+                <li>
+                  <Link to="/userProfile" className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </Link>
+                </li>
+              ) : null}
+              {LocalStorageuser ? (
+                <li>
+                  <Link to="/purchaseHistory">Purchase History</Link>
+                </li>
+              ) : null}
+              {LocalStorageuser ? (
+                <li>
+                  <button
+                    onClick={() => {
+                      localStorage.clear();
+                      settoggle(!toggle);
+                      navigate("/");
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
+              ) : null}
+
+              {LocalStorageuser ? null : (
+                <li>
+                  <Link to="/loginPage">Login</Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>

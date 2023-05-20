@@ -68,8 +68,9 @@ const PurchaseHistory = () => {
   }, [productData]);
 
   useEffect(() => {
+    const userid = JSON.parse(localStorage.getItem("userid"));
     axios
-      .get("https://fakestoreapi.com/carts/user/3")
+      .get(`https://fakestoreapi.com/carts/user/${userid?.id}`)
       .then(function (response) {
         getPurchaseHistory(response.data);
       })
