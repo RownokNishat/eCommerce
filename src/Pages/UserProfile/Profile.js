@@ -10,25 +10,25 @@ const Profile = () => {
   const [userData, setUserData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { user } = useContext(AuthContext);
+  const { user, toggle } = useContext(AuthContext);
+
   useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/users/2`)
-      .then(function (response) {
-        setUserData(response.data);
-      })
-      .then(function (error) {
-        console.log(error);
-      });
-    // axios
-    //   .get(`https://fakestoreapi.com/users/${user?.sub}`)
-    //   .then(function (response) {
-    //     setUserData(response.data);
-    //   })
-    //   .then(function (error) {
-    //     console.log(error);
-    //   });
-  }, [user]);
+    const userid = JSON.parse(localStorage.getItem("userid"));
+    const localStorageuserdata = JSON.parse(localStorage.getItem("userdata"));
+    if (localStorageuserdata === null) {
+      axios
+        .get(`https://fakestoreapi.com/users/${userid?.id}`)
+        .then(function (response) {
+          setUserData(response.data);
+          localStorage.setItem("userdata", JSON.stringify(response.data));
+        })
+        .then(function (error) {
+          console.log(error);
+        });
+    } else {
+      setUserData(localStorageuserdata);
+    }
+  }, [user, toggle]);
 
   const handleModal = (d) => {
     setIsOpen(true);
