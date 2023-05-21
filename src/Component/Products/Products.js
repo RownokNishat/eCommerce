@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import Modal from "../Modal/Modal";
 import ShowDetails from "../ShowDetails/ShowDetails";
-import { sort } from "semver";
+import ReactPaginate from "react-paginate";
 
 const Products = () => {
   const [datas, setDatas] = useState([]);
@@ -13,6 +13,25 @@ const Products = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [highSortDatas, setHighSortDatas] = useState(null);
   const [lowSortDatas, setLowSortDatas] = useState(null);
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // Number of items per page
+  const itemsPerPage = 3;
+
+  const pageCount = Math.ceil(datas?.length / itemsPerPage);
+
+  // Handle page change event
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  // Get current items based on current page
+
+  const currentItems = datas?.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
 
   const handleModal = (d) => {
     setIsOpen(true);
@@ -82,9 +101,9 @@ const Products = () => {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 w-4/5 mx-auto">
-        {datas
-          ? datas?.map((data) => {
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 w-4/5 mx-auto mb-3">
+        {currentItems
+          ? currentItems?.map((data) => {
               return (
                 <Product
                   key={data?.id}
@@ -95,6 +114,19 @@ const Products = () => {
             })
           : null}
       </div>
+      <ReactPaginate
+        previousLabel={<span className="font-bold">Previous</span>}
+        nextLabel={<span className="font-bold">Next</span>}
+        breakLabel={<span className="font-bold">...</span>}
+        pageCount={pageCount}
+        onPageChange={handlePageChange}
+        containerClassName="flex justify-center"
+        previousLinkClassName="mr-2"
+        nextLinkClassName="ml-2"
+        pageLinkClassName="px-2 py-1 font-bold"
+        activeLinkClassName="bg-blue-500 text-white font-bold"
+        disabledClassName="text-gray-400 font-bold"
+      />
     </div>
   );
 };
