@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import PurchaseHistory from "../PurchaseHistory/PurchaseHistory";
 import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
 import { toast } from "react-toastify";
+import { minus } from "../../SharedComponent/SVGicons/Minus";
+import { plus } from "../../SharedComponent/SVGicons/Plus";
 const Cart = () => {
   const [nodata, setNodata] = useState(true);
   const [data, setdata] = useState([]);
@@ -134,7 +136,7 @@ const Cart = () => {
                         className="addToCartButtonDecrease"
                         onClick={() => handleminus(d.id)}
                       >
-                        Less -
+                        {minus}
                       </button>
                     </td>
                     <td>
@@ -143,7 +145,7 @@ const Cart = () => {
                         className="addToCartButtonIncrease"
                         onClick={() => handleplus(d.id)}
                       >
-                        Add +
+                        {plus}
                       </button>
                     </td>
                     <td>{d.price}</td>
