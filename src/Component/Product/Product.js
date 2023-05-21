@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Modal from "../Modal/Modal";
 import "./Product.css";
 import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
+import { toast } from "react-toastify";
 
 const Product = ({ data, handleModal }) => {
   const { id, title, price, description, category, image, rating } = data;
@@ -13,6 +14,7 @@ const Product = ({ data, handleModal }) => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
     data.quantity = 1;
     data.payableprice = data.price;
+    toast.success("Product has added to cart");
     if (localCart === null) {
       var arr = [];
       arr.push(data);
