@@ -13,8 +13,7 @@ const Products = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [highSortDatas, setHighSortDatas] = useState(null);
   const [lowSortDatas, setLowSortDatas] = useState(null);
-  const [searchText, setSeacrhText] = useState("");
-  const [searchingData, setSearchingData] = useState("");
+
   const handleModal = (d) => {
     setIsOpen(true);
     setData(d);
@@ -24,6 +23,7 @@ const Products = () => {
       .get("https://fakestoreapi.com/products")
       .then(function (response) {
         setDatas(response?.data);
+        localStorage.setItem("products", JSON.stringify(response?.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -35,17 +35,8 @@ const Products = () => {
       setDatas(highSortDatas);
     } else if (sortBy == 1) {
       setDatas(lowSortDatas);
-    } else {
-      setDatas(searchingData);
     }
-  }, [
-    setHighSortDatas,
-    highSortDatas,
-    lowSortDatas,
-    setLowSortDatas,
-    searchingData,
-    setSearchingData,
-  ]);
+  }, [setHighSortDatas, highSortDatas, lowSortDatas, setLowSortDatas]);
 
   useEffect(() => {
     if (sortBy === "0") {
@@ -58,42 +49,17 @@ const Products = () => {
     }
   }, [sortBy]);
 
-  const handleSearch = () => {
-    let arr = [];
-    datas?.map((d) => {
-      if (
-        d?.title.includes(searchText) ||
-        d?.description.includes(searchText)
-      ) {
-        arr.push(d);
-      }
-    });
-    setSearchingData(arr);
-    setHighSortDatas([]);
-    setLowSortDatas([]);
-  };
-
   return (
-    <div className="mt-14">
+    <div className="mt-3">
       {isOpen && (
         <Modal setIsOpen={setIsOpen}>
           {" "}
           <ShowDetails data={data}></ShowDetails>
         </Modal>
       )}
-      <div className="w-4/5 mx-auto flex gap-8 text-xl font-bold mb-4">
-        <div className="p-3 flex">
-          <input
-            type="text"
-            name="price"
-            onChange={(e) => setSeacrhText(e.target.value)}
-          />
-          <button onClick={handleSearch} className="ps-2">
-            search
-          </button>
-        </div>
+      <div className="w-4/5 mx-auto flex justify-end gap-8 text-xl font-bold mb-4">
         <div className="border-spacing-16 rounded border-solid border-2  border-black ">
-          <div className="p-3 flex">
+          <div className="p-2 flex">
             <input
               type="radio"
               name="price"
@@ -104,7 +70,7 @@ const Products = () => {
           </div>
         </div>
         <div className="border-spacing-16 rounded border-solid border-2  border-black ">
-          <div className="p-3 flex">
+          <div className="p-2 flex">
             <input
               type="radio"
               name="price"
