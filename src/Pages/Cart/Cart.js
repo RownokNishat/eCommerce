@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PurchaseHistory from "../PurchaseHistory/PurchaseHistory";
 import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
+import { toast } from "react-toastify";
 const Cart = () => {
   const [nodata, setNodata] = useState(true);
   const [data, setdata] = useState([]);
@@ -42,8 +43,11 @@ const Cart = () => {
           setToggle(!toggle);
         } else if (singleCart.quantity === 1) {
           let result = window.confirm("Are you sure want to delete?");
+
           if (result) {
+            toast.error("Product is removed from the cart");
             localCart.splice(i, 1);
+
             localStorage.setItem("cart", JSON.stringify(localCart));
             setToggle(!toggle);
           }

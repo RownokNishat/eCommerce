@@ -4,6 +4,8 @@ import Product from "../Product/Product";
 import Modal from "../Modal/Modal";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import ReactPaginate from "react-paginate";
+import { BallTriangle, RotatingLines } from "react-loader-spinner";
+import Loading from "../Loading/Loading";
 
 const Products = () => {
   const [datas, setDatas] = useState([]);
@@ -37,15 +39,19 @@ const Products = () => {
     setIsOpen(true);
     setData(d);
   };
+
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get("https://fakestoreapi.com/products")
       .then(function (response) {
         setDatas(response?.data);
         localStorage.setItem("products", JSON.stringify(response?.data));
+        setIsLoading(false);
       })
       .catch(function (error) {
         console.log(error);
+        setIsLoading(false);
       });
   }, []);
 
@@ -76,57 +82,64 @@ const Products = () => {
           <ShowDetails data={data}></ShowDetails>
         </Modal>
       )}
-      <div className="w-4/5 mx-auto flex justify-end gap-8 text-xl font-bold mb-4">
-        <div className="border-spacing-16 rounded border-solid border-2  border-black ">
-          <div className="p-2 flex">
-            <input
-              type="radio"
-              name="price"
-              value="0"
-              onChange={(e) => setSortBy(e.target.value)}
-            />
-            <p className="ps-2">High to low</p>
-          </div>
-        </div>
-        <div className="border-spacing-16 rounded border-solid border-2  border-black ">
-          <div className="p-2 flex">
-            <input
-              type="radio"
-              name="price"
-              value="1"
-              onChange={(e) => setSortBy(e.target.value)}
-            />
-            <p className="ps-2">Low to high</p>
-          </div>
-        </div>
-      </div>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 w-4/5 mx-auto mb-3">
-        {currentItems
-          ? currentItems?.map((data) => {
-              return (
-                <Product
-                  key={data?.id}
-                  data={data}
-                  handleModal={handleModal}
-                ></Product>
-              );
-            })
-          : null}
-      </div>
-      <ReactPaginate
-        previousLabel={<span className="font-bold">Previous</span>}
-        nextLabel={<span className="font-bold">Next</span>}
-        breakLabel={<span className="font-bold">...</span>}
-        pageCount={pageCount}
-        onPageChange={handlePageChange}
-        containerClassName="flex justify-center"
-        previousLinkClassName="mr-2"
-        nextLinkClassName="ml-2"
-        pageLinkClassName="px-2 py-1 font-bold"
-        activeLinkClassName="bg-blue-500 text-white font-bold"
-        disabledClassName="text-gray-400 font-bold"
-      />
+      {isLoading ? (
+        <Loading></Loading>
+      ) : (
+        <>
+          <div className="w-4/5 mx-auto flex justify-end gap-8 text-xl font-bold mb-4">
+            <div className="border-spacing-16 rounded border-solid border-2  border-black ">
+              <div className="p-2 flex">
+                <input
+                  type="radio"
+                  name="price"
+                  value="0"
+                  onChange={(e) => setSortBy(e.target.value)}
+                />
+                <p className="ps-2">High to low</p>
+              </div>
+            </div>
+            <div className="border-spacing-16 rounded border-solid border-2  border-black ">
+              <div className="p-2 flex">
+                <input
+                  type="radio"
+                  name="price"
+                  value="1"
+                  onChange={(e) => setSortBy(e.target.value)}
+                />
+                <p className="ps-2">Low to high</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 w-4/5 mx-auto mb-3">
+            {currentItems
+              ? currentItems?.map((data) => {
+                  return (
+                    <Product
+                      key={data?.id}
+                      data={data}
+                      handleModal={handleModal}
+                    ></Product>
+                  );
+                })
+              : null}
+          </div>
+          <ReactPaginate
+            previousLabel={<span className="font-bold">Previous</span>}
+            nextLabel={<span className="font-bold">Next</span>}
+            breakLabel={<span className="font-bold">...</span>}
+            pageCount={pageCount}
+            onPageChange={handlePageChange}
+            containerClassName="flex justify-center"
+            previousLinkClassName="mr-2"
+            nextLinkClassName="ml-2"
+            pageLinkClassName="px-2 py-1 font-bold"
+            activeLinkClassName="bg-blue-500 text-white font-bold"
+            disabledClassName="text-gray-400 font-bold"
+          />
+        </>
+      )}
     </div>
   );
 };
