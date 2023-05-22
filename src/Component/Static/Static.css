@@ -1,0 +1,9 @@
+@media screen and (max-width: 640px) {
+  .static-parent-div {
+    width: 60%;
+    margin: auto;
+  }
+  .static-child-div {
+    margin-top: 10px;
+  }
+}

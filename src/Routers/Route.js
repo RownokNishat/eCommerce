@@ -6,6 +6,7 @@ import Registration from "../Pages/RegistrationPage/Registration";
 import PurchaseHistory from "../Pages/PurchaseHistory/PurchaseHistory";
 import Profile from "../Pages/UserProfile/Profile";
 import CRUDProduct from "../Pages/Admin/CRUDProduct/CRUDProduct";
+import SearchProducts from "../Component/SearchProducts/SearchProducts";
 const { createBrowserRouter } = require("react-router-dom");
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart></Cart>,
+      },
+      {
+        path: "/search",
+        element: <SearchProducts></SearchProducts>,
       },
       {
         path: "/purchaseHistory",

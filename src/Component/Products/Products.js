@@ -22,7 +22,7 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   // Number of items per page
-  const itemsPerPage = 3;
+  const itemsPerPage = 6;
 
   const pageCount = Math.ceil(datas?.length / itemsPerPage);
 
@@ -95,7 +95,7 @@ const Products = () => {
         <Loading></Loading>
       ) : (
         <>
-          <div className="w-4/5 mx-auto flex justify-end gap-8 text-xl font-bold mb-4">
+          <div className="w-4/5 mx-auto flex lg:justify-end md:justify-start gap-8 text-xl font-bold mb-4">
             <div className="border-spacing-16 rounded border-solid border-2  border-black ">
               <div className="p-2 flex">
                 <input

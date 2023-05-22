@@ -40,7 +40,7 @@ const SearchProducts = () => {
   };
 
   return (
-    <div className="mt-3">
+    <div className="mt-3 min-h-screen ">
       {isOpen && (
         <Modal setIsOpen={setIsOpen}>
           {" "}
@@ -48,16 +48,19 @@ const SearchProducts = () => {
         </Modal>
       )}
       <div className="w-4/5 mx-auto flex justify-start text-xl mb-4">
-        <div className="p-3 flex">
+        <div className="p-3 flex ">
           <input
             type="text"
             name="price"
-            className="border-2 border-solid rounded border-black p-1"
+            className="border-2 border-solid rounded border-black p-1 w-64 "
             onChange={(e) => {
               handleSearch(e);
             }}
           />
-          <button onClick={handleSearch} className="ps-2">
+          <button
+            onClick={handleSearch}
+            className="ms-4 btn bg-gradient-to-r from-violet-500 to-fuchsia-500"
+          >
             Search
           </button>
         </div>
@@ -77,7 +80,7 @@ const SearchProducts = () => {
         ) : searchText && searchingData?.length == 0 ? (
           <h2>No items found</h2>
         ) : isSearch ? (
-          <h2>Please Search something</h2>
+          <h2 className="font-bold text-red-700">Please Search something</h2>
         ) : null}
       </div>
     </div>

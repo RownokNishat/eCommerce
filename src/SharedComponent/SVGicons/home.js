@@ -6,7 +6,7 @@ export const home = (
     strokeWidth={1.5}
     stroke="currentColor"
     // className="w-14 h-14 font-bold pe-6"
-    className="h-8 w-8 text-5xl font-extrabold"
+    className="h-8 w-8 text-5xl font-extrabold me-4"
   >
     <path
       strokeLinecap="round"
