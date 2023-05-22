@@ -72,7 +72,7 @@ This e-commerce site is an online platform that allows users to browse and purch
    [![Cart.png](https://i.postimg.cc/3N0R4HfL/Cart.png)](https://postimg.cc/xNYYhB2H)
 
 5. PurchaseHistoryPage:
-   Here,User can see previous purchase history and also check how much he/she has spend on each categories
+   Here User can see previous purchase history and also check how much he/she has spend on each categories
    [![Purchase-History.png](https://i.postimg.cc/Cx5Fz0Zb/Purchase-History.png)](https://postimg.cc/NKhhzWk0)
 
 6. AdminPage:
