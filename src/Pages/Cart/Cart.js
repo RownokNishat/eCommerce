@@ -10,9 +10,14 @@ const Cart = () => {
   const [data, setdata] = useState([]);
   const [toggle, setToggle] = useState(true);
   const [totalPayablePrice, settotalPayablePrice] = useState(0);
+  const [userData, setUserData] = useState([]);
+  const { user } = useContext(AuthContext);
 
-  const user = JSON.parse(localStorage.getItem("userdata"));
+  useEffect(() => {
+    setUserData(JSON.parse(localStorage.getItem("userid")));
+  }, [user]);
 
+  console.log(userData);
   useEffect(() => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
 
@@ -167,8 +172,8 @@ const Cart = () => {
           </table>
           <hr></hr>
         </div>
-        <div className="checkoutDiv mt-3 flex justify-centergi">
-          {user ? (
+        <div className="checkoutDiv mt-3 flex justify-start">
+          {userData ? (
             <Link to="/purchaseHistory">
               {" "}
               <button
