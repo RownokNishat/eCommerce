@@ -14,7 +14,7 @@ This e-commerce site is an online platform that allows users to browse and purch
 ## Table of Contents
 
 - [Installation](#installation)
-- [TechnologiesUsed](#Technologies Used)
+- [TechnologiesUsed](#TechnologiesUsed)
 - [Usage](#usage)
 - [Contact](#contact)
 
@@ -42,7 +42,7 @@ This e-commerce site is an online platform that allows users to browse and purch
    npm start
    ```
 
-## Technologies Used
+## TechnologiesUsed
 
 - Front-end: HTML, CSS, React.js
 - Used Library: Tailwind CSS, DaisyUI
