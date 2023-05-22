@@ -49,6 +49,7 @@ This e-commerce site is an online platform that allows users to browse and purch
 
 - Front-end: HTML, CSS, React.js
 - Used Library: Tailwind CSS, DaisyUI
+- API: Fake Store API
 - Additional Tools: UseContext, LocalStorage, Axios
 - Used Packages:react-router-dom, heroicons, jwt-decode, react-toastify, react-loader-spinner , react-paginate
 
