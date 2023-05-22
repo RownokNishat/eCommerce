@@ -47,17 +47,20 @@ const SearchProducts = () => {
           <ShowDetails data={data}></ShowDetails>
         </Modal>
       )}
-      <div className="w-4/5 mx-auto flex justify-start text-xl mb-4">
-        <div className="p-3 flex">
+      <div className="w-4/5 mx-auto flex lg:justify-end md:justify-start sm:justify-start text-xl mb-4">
+        <div className="p-3 flex ">
           <input
             type="text"
             name="price"
-            className="border-2 border-solid rounded border-black p-1"
+            className="border-2 border-solid rounded border-black p-1 w-56 "
             onChange={(e) => {
               handleSearch(e);
             }}
           />
-          <button onClick={handleSearch} className="ps-2">
+          <button
+            onClick={handleSearch}
+            className="ms-4 btn bg-gradient-to-r from-violet-500 to-fuchsia-500"
+          >
             Search
           </button>
         </div>
