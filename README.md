@@ -14,7 +14,7 @@ This e-commerce site is an online platform that allows users to browse and purch
 ## Table of Contents
 
 - [Installation](#installation)
-- [Technologies Used](#Technologies Used)
+- [TechnologiesUsed](#Technologies Used)
 - [Usage](#usage)
 - [Contact](#contact)
 
