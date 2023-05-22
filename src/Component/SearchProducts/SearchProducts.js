@@ -40,19 +40,19 @@ const SearchProducts = () => {
   };
 
   return (
-    <div className="mt-3">
+    <div className="mt-3 min-h-screen ">
       {isOpen && (
         <Modal setIsOpen={setIsOpen}>
           {" "}
           <ShowDetails data={data}></ShowDetails>
         </Modal>
       )}
-      <div className="w-4/5 mx-auto flex lg:justify-end md:justify-start sm:justify-start text-xl mb-4">
+      <div className="w-4/5 mx-auto flex justify-start text-xl mb-4">
         <div className="p-3 flex ">
           <input
             type="text"
             name="price"
-            className="border-2 border-solid rounded border-black p-1 w-56 "
+            className="border-2 border-solid rounded border-black p-1 w-64 "
             onChange={(e) => {
               handleSearch(e);
             }}
@@ -80,7 +80,7 @@ const SearchProducts = () => {
         ) : searchText && searchingData?.length == 0 ? (
           <h2>No items found</h2>
         ) : isSearch ? (
-          <h2>Please Search something</h2>
+          <h2 className="font-bold text-red-700">Please Search something</h2>
         ) : null}
       </div>
     </div>

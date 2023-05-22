@@ -6,6 +6,7 @@ import Product from "../Product/Product";
 import Loading from "../Loading/Loading";
 import Modal from "../Modal/Modal";
 import ShowDetails from "../ShowDetails/ShowDetails";
+import { cart } from "../../SharedComponent/SVGicons/cart";
 
 const CategoryWiseProduct = () => {
   const [categories, setCategories] = useState([]);
@@ -58,8 +59,10 @@ const CategoryWiseProduct = () => {
           return (
             <div
               key={i}
-              className="category-wise-child-div flex justify-center align-middle border-2 border-solid rounded-full border-blue-600 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-xl font-bold text-white"
+              className="category-wise-child-div flex justify-center align-middle border-2 border-solid rounded-full  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-md font-bold text-white"
             >
+              {" "}
+              <span className="mt-6 me-2 text-red-800">{cart}</span>
               <button onClick={() => handleCategory(c)} className="pt-1">
                 {c}
               </button>

@@ -36,7 +36,7 @@ const Static = () => {
   }, []);
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 lg:gap-14 md:gap-10 sm:gap-10  lg:w-4/5 lg:h-20 md:w-4/5 md:h-20 sm:w-full sm:h-20 mx-auto mt-5 mb-16 static-parent-div">
-      <div className="static-child-div flex justify-between border-2 border-solid rounded-lg border-blue-600 bg-blue-100">
+      <div className="static-child-div flex justify-between border-2 rounded-3xl border-solid   bg-gradient-to-r from-[#f0abfc] to-[#dbe3ec]">
         <div className="flex align-middle flex-col p-4  font-bold ">
           <h2>Products</h2>
           <span className="text-2xl"> {datas?.length}</span>
@@ -45,8 +45,8 @@ const Static = () => {
           <div>{productsvg}</div>
         </div>
       </div>
-      <div className=" static-child-div flex justify-between border-2 border-solid rounded-lg border-blue-600 bg-yellow-200">
-        <div className="  flex align-middle flex-col p-4  font-bold ">
+      <div className=" static-child-div flex justify-between border-2 border-solid rounded-3xl  bg-gradient-to-r from-[#4CA1AF] to-[#C4E0E5]">
+        <div className="  flex align-middle text-white flex-col p-4  font-bold ">
           <h2>Users</h2>
           <span className="text-2xl"> {users?.length}</span>
         </div>
@@ -54,7 +54,7 @@ const Static = () => {
           <div>{usersSVG}</div>
         </div>
       </div>
-      <div className="static-child-div flex justify-between border-2 border-solid rounded-lg border-blue-600 bg-blue-100 ">
+      <div className="static-child-div flex justify-between border-2 border-solid rounded-3xl bg-gradient-to-r from-[#f0abfc] to-[#dbe3ec]">
         <div className="flex align-middle flex-col p-4  font-bold ">
           <h2>Reviews</h2>
           <span className="text-2xl">7</span>

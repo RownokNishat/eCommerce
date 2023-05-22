@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Authprovider/Authprovider";
 import { home } from "../SVGicons/home";
 import { cart } from "../SVGicons/cart";
+import { search } from "../SVGicons/search";
 
 const Navbar = () => {
   const [cartdata, setCartdata] = useState([]);
@@ -33,6 +34,7 @@ const Navbar = () => {
 
         <div className="flex-none">
           <Link to="/">{home}</Link>
+          <Link to="/search">{search}</Link>
 
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">

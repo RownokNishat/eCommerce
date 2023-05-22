@@ -12,7 +12,6 @@ const Landing = () => {
       <Banner></Banner>
       <HotProducts></HotProducts>
       <Static></Static>
-      <SearchProducts></SearchProducts>
       <Products></Products>
       <CategoryWiseProduct></CategoryWiseProduct>
     </div>

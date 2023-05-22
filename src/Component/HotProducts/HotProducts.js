@@ -4,6 +4,7 @@ import Modal from "../Modal/Modal";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import Product from "../Product/Product";
 import Loading from "../Loading/Loading";
+import { firesvg } from "../../SharedComponent/SVGicons/fire";
 
 const HotProducts = () => {
   const [datas, setDatas] = useState([]);
@@ -59,9 +60,10 @@ const HotProducts = () => {
         <Loading></Loading>
       ) : (
         <>
-          <p className="text-center  font-bold text-2xl mb-10">
-            Most Popular Products
-          </p>
+          <div className=" flex justify-center text-center  font-bold text-2xl mb-10">
+            <span>{firesvg}</span>
+            <span className="mt-2">Most Popular Products</span>
+          </div>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 w-4/5 mx-auto mb-3">
             {datas?.slice(0, 3).map((data) => {
               return (
