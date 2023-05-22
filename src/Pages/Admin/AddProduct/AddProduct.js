@@ -174,7 +174,7 @@ const AddProduct = ({
               onClick={handleAddProduct}
               className="btn border-0 bg-gradient-to-r from-violet-500 to-fuchsia-500"
             >
-              Add Product
+              {modalData ? "Update Product" : "Add Product"}
             </button>
           </div>
         </div>
