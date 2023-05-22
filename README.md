@@ -14,13 +14,10 @@ This e-commerce site is an online platform that allows users to browse and purch
 ## Table of Contents
 
 - [Installation](#installation)
+- [Technologies Used](#Technologies Used)
 - [Usage](#usage)
-- [Configuration](#configuration)
-- [File Structure](#file-structure)
-- [Contribution Guidelines](#contribution-guidelines)
-- [License](#license)
 - [Contact](#contact)
-- [Acknowledgments](#acknowledgments)
+
 
 ## Installation
 
@@ -97,3 +94,7 @@ This e-commerce site is an online platform that allows users to browse and purch
    [![Admin-Page.png](https://i.postimg.cc/jS0WfLby/Admin-Page.png)](https://postimg.cc/vchHF8Dm)
    [![Add-Product-Admin.png](https://i.postimg.cc/TPvrTt1M/Add-Product-Admin.png)](https://postimg.cc/CRJZNHbm)
    [![Update-Product-Admin.png](https://i.postimg.cc/D0wNBv3g/Update-Product-Admin.png)](https://postimg.cc/qhWQ7dRh)
+   
+## Contact
+
+For any inquiries or feedback, please contact us at rownokjahannishat17@gmail.com
