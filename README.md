@@ -54,4 +54,4 @@ This e-commerce site is an online platform that allows users to browse and purch
 
 ## Usage
 
-[![Login.png](https://i.postimg.cc/KzKjYgjc/Login.png)](https://postimg.cc/HcgdZnbF)
+[![Login.png](https://i.postimg.cc/T3J6vjjM/Login.png)](https://postimg.cc/qNqY83Zj)
