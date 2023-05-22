@@ -5,6 +5,7 @@ import Login from "../Pages/LoginPage/Login";
 import Registration from "../Pages/RegistrationPage/Registration";
 import PurchaseHistory from "../Pages/PurchaseHistory/PurchaseHistory";
 import Profile from "../Pages/UserProfile/Profile";
+import CRUDProduct from "../Pages/Admin/CRUDProduct/CRUDProduct";
 const { createBrowserRouter } = require("react-router-dom");
 
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/userProfile",
         element: <Profile></Profile>,
+      },
+      {
+        path: "/adminPage",
+        element: <CRUDProduct></CRUDProduct>,
       },
     ],
   },

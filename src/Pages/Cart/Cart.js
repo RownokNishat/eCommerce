@@ -3,14 +3,21 @@ import { Link } from "react-router-dom";
 import PurchaseHistory from "../PurchaseHistory/PurchaseHistory";
 import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
 import { toast } from "react-toastify";
+import { minus } from "../../SharedComponent/SVGicons/Minus";
+import { plus } from "../../SharedComponent/SVGicons/Plus";
 const Cart = () => {
   const [nodata, setNodata] = useState(true);
   const [data, setdata] = useState([]);
   const [toggle, setToggle] = useState(true);
   const [totalPayablePrice, settotalPayablePrice] = useState(0);
+  const [userData, setUserData] = useState([]);
+  const { user } = useContext(AuthContext);
 
-  const user = JSON.parse(localStorage.getItem("userdata"));
+  useEffect(() => {
+    setUserData(JSON.parse(localStorage.getItem("userid")));
+  }, [user]);
 
+  console.log(userData);
   useEffect(() => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
 
@@ -134,7 +141,7 @@ const Cart = () => {
                         className="addToCartButtonDecrease"
                         onClick={() => handleminus(d.id)}
                       >
-                        Less -
+                        {minus}
                       </button>
                     </td>
                     <td>
@@ -143,7 +150,7 @@ const Cart = () => {
                         className="addToCartButtonIncrease"
                         onClick={() => handleplus(d.id)}
                       >
-                        Add +
+                        {plus}
                       </button>
                     </td>
                     <td>{d.price}</td>
@@ -165,8 +172,8 @@ const Cart = () => {
           </table>
           <hr></hr>
         </div>
-        <div className="checkoutDiv mt-3 flex justify-centergi">
-          {user ? (
+        <div className="checkoutDiv mt-3 flex justify-start">
+          {userData ? (
             <Link to="/purchaseHistory">
               {" "}
               <button

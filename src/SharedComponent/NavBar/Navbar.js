@@ -3,6 +3,8 @@ import navlogo from "../../Assests/Images/navlogo.png";
 import userprofile from "../../Assests/Images/userprofile.png";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Authprovider/Authprovider";
+import { home } from "../SVGicons/home";
+import { cart } from "../SVGicons/cart";
 
 const Navbar = () => {
   const [cartdata, setCartdata] = useState([]);
@@ -30,41 +32,12 @@ const Navbar = () => {
         </div>
 
         <div className="flex-none">
-          <Link to="/">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              // className="w-14 h-14 font-bold pe-6"
-              className="h-8 w-8 text-5xl "
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-              />
-            </svg>
-          </Link>
+          <Link to="/">{home}</Link>
 
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <div className="indicator ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8 text-5xl"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
+                {cart}
                 <span className="badge badge-sm indicator-item text-white">
                   {cartdata?.length}
                 </span>
@@ -107,11 +80,19 @@ const Navbar = () => {
                   </Link>
                 </li>
               ) : null}
+
+              {LocalStorageuser?.role == "admin" ? (
+                <li>
+                  <Link to="/adminPage">Admin</Link>
+                </li>
+              ) : null}
+
               {LocalStorageuser ? (
                 <li>
                   <Link to="/purchaseHistory">Purchase History</Link>
                 </li>
               ) : null}
+
               {LocalStorageuser ? (
                 <li>
                   <button

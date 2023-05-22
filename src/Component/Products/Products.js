@@ -1,11 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Product from "../Product/Product";
 import Modal from "../Modal/Modal";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import ReactPaginate from "react-paginate";
 import { BallTriangle, RotatingLines } from "react-loader-spinner";
 import Loading from "../Loading/Loading";
+import { AuthContext } from "../../SharedComponent/Authprovider/Authprovider";
 
 const Products = () => {
   const [datas, setDatas] = useState([]);
@@ -15,6 +16,8 @@ const Products = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [highSortDatas, setHighSortDatas] = useState(null);
   const [lowSortDatas, setLowSortDatas] = useState(null);
+
+  const { toggle } = useContext(AuthContext);
   // Pagination state
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -41,19 +44,24 @@ const Products = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then(function (response) {
-        setDatas(response?.data);
-        localStorage.setItem("products", JSON.stringify(response?.data));
-        setIsLoading(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-        setIsLoading(false);
-      });
-  }, []);
+    const products = JSON.parse(localStorage.getItem("products"));
+    if (products === null) {
+      setIsLoading(true);
+      axios
+        .get("https://fakestoreapi.com/products")
+        .then(function (response) {
+          setDatas(response?.data);
+          localStorage.setItem("products", JSON.stringify(response?.data));
+          setIsLoading(false);
+        })
+        .catch(function (error) {
+          console.log(error);
+          setIsLoading(false);
+        });
+    } else {
+      setDatas(products);
+    }
+  }, [toggle]);
 
   useEffect(() => {
     if (sortBy == 0) {
