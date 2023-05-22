@@ -2,6 +2,10 @@
 
 This e-commerce site is an online platform that allows users to browse and purchase products from various categories. It aims to provide a seamless and enjoyable shopping experience for customers while offering a convenient way for businesses to showcase and sell their products.
 
+## Live link
+
+https://lucky-sawine-aaafe6.netlify.app
+
 ## Key Features
 
 - User Registration and Authentication: Users can create an account, log in, and manage their personal information and can see their order history.
