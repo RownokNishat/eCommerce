@@ -62,7 +62,7 @@ const CategoryWiseProduct = () => {
               className="category-wise-child-div flex justify-center align-middle border-2 border-solid rounded-full  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-md font-bold text-white"
             >
               {" "}
-              <span className="mt-6 me-2 text-red-800">{cart}</span>
+              <span className="mt-6 me-2 text-red-800git">{cart}</span>
               <button onClick={() => handleCategory(c)} className="pt-1">
                 {c}
               </button>
